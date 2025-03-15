@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{827fcfd8-0be0-4c3f-a204-94a72811bfd1}</ProjectGuid>
-    <RootNamespace>DataStructure15763422</RootNamespace>
+    <ProjectGuid>{303070b3-ee0b-4525-a5ff-355c40d723e6}</ProjectGuid>
+    <RootNamespace>Start</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -126,11 +126,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\Downloads\2완성_신한목_5763422_0313.c" />
-    <ClCompile Include="..\..\..\..\..\..\Downloads\3완성_신한목_5763422_0313.c" />
-    <ClCompile Include="1완성_신한목_5763422_0311.c" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

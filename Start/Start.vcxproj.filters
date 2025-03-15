@@ -14,15 +14,4 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="1완성_신한목_5763422_0311.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\Downloads\2완성_신한목_5763422_0313.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\Downloads\3완성_신한목_5763422_0313.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-  </ItemGroup>
 </Project>
