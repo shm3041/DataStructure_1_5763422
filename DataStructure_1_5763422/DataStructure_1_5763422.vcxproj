@@ -130,6 +130,8 @@
     <ClCompile Include="1완성_신한목_5763422_0311.c" />
     <ClCompile Include="2완성_신한목_5763422_0313.c" />
     <ClCompile Include="3완성_신한목_5763422_0313.c" />
+    <ClCompile Include="4완성_신한목_5763422_0318.c" />
+    <ClCompile Include="5완성_신한목_5763422_0318.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
