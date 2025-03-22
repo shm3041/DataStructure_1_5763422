@@ -1,12 +1,15 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h> // exit(1)
 #include <string.h>
-#include <ctype.h> //isdigit()(문자, 숫자 구분)
+#include <ctype.h> // isdigit()(문자, 숫자 구분)
 
 #define MAX_LENGTH 100
 
-//사칙연산을 하기 위한 함수 (매개변수: 정수 2개, 연산자)
-float calculate(float num1, float num2, char operator);
+float calculate(float num1, float num2, char operator);//사칙연산을 하기 위한 함수 (매개변수: 정수 2개, 연산자)
+float add(float a, float b); //더하기
+float subtract(float a, float b); //빼기
+float multiply(float a, float b); //곱하기
+float divide(float a, float b); //나누기
 
 int main() {
     //값을 입력받을 배열
@@ -24,93 +27,63 @@ int main() {
     int i = 0;
     while (i < strlen(input)) {
         if (isdigit(input[i]) || input[i] == '.') { //문자, 숫자 구분
-            // 소수점 숫자 처리
             char number[MAX_LENGTH] = { 0 };
             int j = 0;
 
-            // 숫자와 소수점을 읽어 하나의 숫자로 처리
             while (isdigit(input[i]) || input[i] == '.') {
                 number[j++] = input[i++];
             }
-
-            // 숫자 문자열을 실수로 변환하여 num 배열에 저장
             num[numCount++] = atof(number);
         }
         else {
-            chr[chrCount++] = input[i++]; // 문자는 chr 배열에 저장
+            chr[chrCount++] = input[i++];
         }
     }
-
     // 곱셈(*)과 나눗셈(/) 먼저 계산
     for (int i = 0; i < chrCount; i++) {
         if (chr[i] == '*' || chr[i] == '/') {
-            float left = num[i];
-            float right = num[i + 1];
-            float result = calculate(left, right, chr[i]);
-
-            num[i] = result; // 연산 결과를 num 배열에 저장
-            for (int j = i + 1; j < numCount - 1; j++) {
-                num[j] = num[j + 1];
-            }
+            float result = calculate(num[i], num[i + 1], chr[i]);
+            num[i] = result;
+            for (int j = i + 1; j < numCount - 1; j++) num[j] = num[j + 1];
             numCount--;
-
-            for (int j = i; j < chrCount - 1; j++) {
-                chr[j] = chr[j + 1];
-            }
+            for (int j = i; j < chrCount - 1; j++) chr[j] = chr[j + 1];
             chrCount--;
-
-            // 연산자가 끝나면 다시 처음부터 처리
             i = -1;
         }
     }
-
     // 덧셈(+)과 뺄셈(-) 계산
     for (int i = 0; i < chrCount; i++) {
         if (chr[i] == '+' || chr[i] == '-') {
-            float left = num[i];
-            float right = num[i + 1];
-            float result = calculate(left, right, chr[i]);
-
+            float result = calculate(num[i], num[i + 1], chr[i]);
             num[i] = result;
-            for (int j = i + 1; j < numCount - 1; j++) {
-                num[j] = num[j + 1];
-            }
+            for (int j = i + 1; j < numCount - 1; j++) num[j] = num[j + 1];
             numCount--;
-
-            for (int j = i; j < chrCount - 1; j++) {
-                chr[j] = chr[j + 1];
-            }
+            for (int j = i; j < chrCount - 1; j++) chr[j] = chr[j + 1];
             chrCount--;
-
-            // 연산자가 끝나면 다시 처음부터 처리
             i = -1;
         }
     }
 
-    // 결과 출력
     printf("계산 결과: %.2f\n", num[0]);
-
     return 0;
 }
 
-// 연산 수행 함수
+// 연산 함수
+float add(float a, float b) { return a + b; }
+float subtract(float a, float b) { return a - b; }
+float multiply(float a, float b) { return a * b; }
+float divide(float a, float b) {
+    if (b != 0) return a / b;
+    printf("0으로 나눌 수 없습니다!\n");
+    exit(1);
+}
+
 float calculate(float num1, float num2, char operator) {
     switch (operator) {
-    case '+':
-        return num1 + num2;
-    case '-':
-        return num1 - num2;
-    case '*':
-        return num1 * num2;
-    case '/':
-        if (num2 != 0) {
-            return num1 / num2;
-        }
-        else {
-            printf("0으로 나눌 수 없습니다!\n");
-            exit(1);
-        }
-    default:
-        return 0;
+    case '+': return add(num1, num2);
+    case '-': return subtract(num1, num2);
+    case '*': return multiply(num1, num2);
+    case '/': return divide(num1, num2);
+    default: return 0;
     }
 }
