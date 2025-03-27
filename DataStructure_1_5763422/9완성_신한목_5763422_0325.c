@@ -5,14 +5,14 @@ PRINT "정수의 개수를 입력하세요: "
 READ integer size
 MALLOC integer array arr(size)
 PRINT "SIZE개의 정수를 입력하세요\n"
-FOR i = 0 TO size DO (i++)
-	READ arr(i)
 FOR i = 0 TO size - 1 DO (i++)
-	FOR j = 0 to size - 1 DO (j++)
+	READ arr(i)
+FOR i = 0 TO size - 2 DO (i++)
+	FOR j = 0 to size - i - 2 DO (j++)
 		IF arr(j) > arr(j+1) THEN
 			SWAP(arr(j), arr(j+1))
 PRINT "오름차순으로 정렬된 정수들:\n"
-FOR i = 0 TO size DO (i++)
+FOR i = 0 TO size - 1 DO (i++)
 	PRINT "arr(i)"
 FREE integer array arr
 
@@ -37,7 +37,7 @@ int main() {
 	}
 
 	for (int i = 0; i < size - 1; i++) {
-		for (int j = 0; j < size - 1; j++) {
+		for (int j = 0; j < size - i - 1; j++) {
 			if (arr[j] > arr[j + 1]) {
 				int tmp = arr[j];
 				arr[j] = arr[j + 1];
