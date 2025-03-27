@@ -36,10 +36,19 @@
     <ClCompile Include="7완성_신한목_5763422_0320.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="9완성_신한목_5763422_0325.c">
+    <ClCompile Include="8완성_신한목_5763422_0325.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="8완성_신한목_5763422_0325.c">
+    <ClCompile Include="0327수업내용.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="10완성_신한목_5763422_0327.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="11완성_신한목_5763422_0327.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="9완성_신한목_5763422_0325.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
