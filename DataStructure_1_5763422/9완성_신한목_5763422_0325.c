@@ -3,17 +3,22 @@ BEGIN
 
 PRINT "정수의 개수를 입력하세요: "
 READ integer size
+
 MALLOC integer array arr(size)
+
 PRINT "SIZE개의 정수를 입력하세요\n"
 FOR i = 0 TO size - 1 DO (i++)
 	READ arr(i)
+
 FOR i = 0 TO size - 2 DO (i++)
 	FOR j = 0 to size - i - 2 DO (j++)
 		IF arr(j) > arr(j+1) THEN
 			SWAP(arr(j), arr(j+1))
+
 PRINT "오름차순으로 정렬된 정수들:\n"
 FOR i = 0 TO size - 1 DO (i++)
 	PRINT "arr(i)"
+
 FREE integer array arr
 
 END
