@@ -6,7 +6,7 @@
 typedef int elementType; //int자료형에 별명 부여
 
 /*
-//위의 방식을 사용하지 않을 시
+//위의 방식을 사용하지 않을 시 데이터 저장 방식
 typedef struct {
 	char name[20];
 	char telphone[3][3][3];

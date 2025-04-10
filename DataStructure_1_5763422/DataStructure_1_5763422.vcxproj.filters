@@ -39,9 +39,6 @@
     <ClCompile Include="8완성_신한목_5763422_0325.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="0327수업내용.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="9완성_신한목_5763422_0325.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -52,9 +49,6 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="12완성_신한목_5763422_0401.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="0401수업내용.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
