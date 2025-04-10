@@ -18,7 +18,7 @@
     <ClCompile Include="linearList.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="완성_0408_5763422_신한목.c">
+    <ClCompile Include="C완성_0408_5763422_신한목.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
