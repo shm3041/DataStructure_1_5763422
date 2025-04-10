@@ -128,7 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="linearList.c" />
-    <ClCompile Include="완성_0408_5763422_신한목.c" />
+    <ClCompile Include="C완성_0408_5763422_신한목.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="linearList.h" />
