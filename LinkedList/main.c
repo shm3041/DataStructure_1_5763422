@@ -14,4 +14,6 @@ int main() {
 	insertFirstNode(&mylist, 50);
 
 	printList(&mylist);
+
+	return 0;
 }
