@@ -3,17 +3,27 @@
 #include "LinkedList.h"
 
 int main() {
-	linkedList_h mylist;
+	/*linkedList_h mylist;
+	mylist.head = (listNode*)NULL;*/
 
-	mylist.head = (listNode*)NULL;
+	linkedList_h* mylist;
+	mylist = createLinkedList();
+
 	//ctrl + D
-	insertFirstNode(&mylist, 10);
-	insertFirstNode(&mylist, 20);
-	insertFirstNode(&mylist, 30);
-	insertFirstNode(&mylist, 40);
-	insertFirstNode(&mylist, 50);
+	//First
+	insertFirstNode(mylist, 10);
+	insertFirstNode(mylist, 20);
+	insertFirstNode(mylist, 30);
+	insertFirstNode(mylist, 40);
+	insertFirstNode(mylist, 50);
 
-	printList(&mylist);
+	//Last
+	insertLastNode(mylist, 60);
+	insertLastNode(mylist, 70);
+	insertLastNode(mylist, 80);
 
+ 	insertMiddleNode(mylist, mylist->head->link->link, 90);
+	printList(mylist);
+	destroyLinkedList(mylist);
 	return 0;
 }

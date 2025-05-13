@@ -2,15 +2,21 @@
 
 typedef int elementType; //노드에 저장할 데이터 타입 (정수)
 
-typedef struct listNode { //연결리스트의 노드 타입 정의
+typedef struct ListNode { //연결리스트의 노드 타입 정의
 	elementType data;
-	struct listNode* link; //포인터 | data, next
+	struct ListNode* link; //포인터 | data, next
 } listNode;
 
 //구조체에 이름이 필요한 것은 위에 기재한 것과 같이 구조체 안에서 구조체를 사용하지 위함임.
 typedef struct { //연결리스트의 헤더(다음 자료의 위치)
 	listNode* head;
+	int follow;
 } linkedList_h;
 
-extern int insertFirstNode(linkedList_h* L, elementType item);
+extern linkedList_h* createLinkedList(void); //매개변수가 void일 때는 헤더 포인터(리터럴)를 리턴한다.
+extern int destroyLinkedList(linkedList_h* L);
 extern int printList(linkedList_h* L);
+extern int insertFirstNode(linkedList_h* L, elementType item);
+extern int insertMiddleNode(linkedList_h* L, listNode* pre, elementType item);
+extern int insertLastNode(linkedList_h* L, elementType item);
+extern void insertNthNode(linkedList_h* L, int loc, elementType item); //loc: location
