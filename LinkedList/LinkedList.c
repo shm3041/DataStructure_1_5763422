@@ -71,6 +71,34 @@ int insertMiddleNode(linkedList_h* L, listNode* pre, elementType item) {
 	return 0;
 }
 
+void insertNthNode(linkedList_h* L, int loc, elementType item) {
+	if (L->head == (listNode*)NULL) {
+		if (loc == 0) insertFirstNode(L, item);
+		else fprintf(stderr, "[insertNthNode]: list empty and loc not 0\n");
+		return;
+	}
+	else {
+		if (loc == 0)
+			insertFirstNode(L, item);
+		else {
+			/*for (int i = loc, listNode* pre = L->head;
+				i--, pre = pre->link;
+				i > 1 && pre->link != (listNode*)NULL) {
+				if (i == 1) insertMiddleNode(L, pre, item);
+				else fprintf(stderr, "[insertNthNode]: locationerror");
+			}*/
+			int i = loc;
+			listNode* pre = L->head;
+			while (i > 1 && pre->link != (listNode*)NULL) {
+				i--, pre = pre->link;
+				L->follow++;
+			}
+			if (i == 1) insertMiddleNode(L, pre, item);
+			else fprintf(stderr, "[insertNthNode]: location error");
+		}
+		return;
+	}
+}
 
 int insertLastNode(linkedList_h* L, elementType item) {
 	listNode *temp, *newNode;
@@ -94,4 +122,56 @@ int insertLastNode(linkedList_h* L, elementType item) {
 
 
 	return 0;
+}
+
+int compare_item(elementType first, elementType second) {
+	return (first - second);
+	//return (second - first);
+}
+
+void ordered_insertNode(linkedList_h* L, elementType item) {
+	listNode* pre;
+
+	if (L->head == (listNode*)NULL)
+		insertFirstNode(L, item);
+	else {
+		if (compare_item(L->head->data, item) > 0)
+			insertFirstNode(L, item);
+		else {
+			pre = L->head;
+			while (pre->link != (listNode*)NULL) {
+				if (compare_item(pre->data, item) < 0 &&
+					compare_item(pre->link->data, item) > 0) break;
+				pre = pre->link;
+				L->follow++;
+			}
+			insertMiddleNode(L, pre, item);
+		}
+	}
+}
+
+void deleteNode(linkedList_h* L, listNode* p) {
+	listNode* pre;
+
+	if (L->head == (listNode*)NULL) return;
+	/* 책 코드 이상해서 주석처리(교수님 말씀)
+	if (L->head->link == (listNode*)NULL) {
+		free(L->head);
+		L->head = (listNode*)NULL;
+		return;
+	}*/
+	else if (p == (listNode*)NULL) return;
+	else {
+		pre = L->head;
+		while (pre->link != p && p->link != (listNode*)NULL) { //리스트에 항목이 없다면 프로그램이 뻗을 수 있음
+			pre = pre->link;
+			L->follow++;
+		}
+		if (pre->link == p) {
+			pre->link = p->link;
+			free(p);
+		}
+		else 
+			fprintf(stderr, "[deleteNode]: not in the list\n");
+	}
 }
