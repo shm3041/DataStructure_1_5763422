@@ -33,12 +33,12 @@ int main() {
 
 	printf("Destroy unorder linked list and New ordered linked list\n");
 	mylist = createLinkedList();
-	ordered_insertNode(mylist, 5);
-	ordered_insertNode(mylist, 3);
-	ordered_insertNode(mylist, 8);
-	ordered_insertNode(mylist, 2);
-	ordered_insertNode(mylist, 9);
+	ordered_insertNode(mylist, 16);
+	ordered_insertNode(mylist, 14);
 	ordered_insertNode(mylist, 11);
+	ordered_insertNode(mylist, 18);
+	ordered_insertNode(mylist, 15);
+	ordered_insertNode(mylist, 13);
 
 	printList(mylist);
 

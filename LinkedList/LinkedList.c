@@ -72,7 +72,9 @@ int insertMiddleNode(linkedList_h* L, listNode* pre, elementType item) {
 }
 
 void insertNthNode(linkedList_h* L, int loc, elementType item) {
+	//리스트에 노드가 없다면
 	if (L->head == (listNode*)NULL) {
+		//삽입하려는 노드의 위치가 0이라면
 		if (loc == 0) insertFirstNode(L, item);
 		else fprintf(stderr, "[insertNthNode]: list empty and loc not 0\n");
 		return;
@@ -132,16 +134,20 @@ int compare_item(elementType first, elementType second) {
 void ordered_insertNode(linkedList_h* L, elementType item) {
 	listNode* pre;
 
+	//리스트가 비어있다면 0번 위치에 노드 삽입
 	if (L->head == (listNode*)NULL)
 		insertFirstNode(L, item);
 	else {
+		//0번 노드의 값 > item , 0번 위치에 노드 삽입
 		if (compare_item(L->head->data, item) > 0)
 			insertFirstNode(L, item);
+		//아니라면 다음 노드와 비교
 		else {
 			pre = L->head;
 			while (pre->link != (listNode*)NULL) {
 				if (compare_item(pre->data, item) < 0 &&
 					compare_item(pre->link->data, item) > 0) break;
+				//if (compare_item(pre->data, item) == 0) break;
 				pre = pre->link;
 				L->follow++;
 			}
@@ -153,21 +159,28 @@ void ordered_insertNode(linkedList_h* L, elementType item) {
 void deleteNode(linkedList_h* L, listNode* p) {
 	listNode* pre;
 
-	if (L->head == (listNode*)NULL) return;
+	//리스트가 비어있다면 return
+	if (L->head == (listNode*)NULL) return; 
 	/* 책 코드 이상해서 주석처리(교수님 말씀)
 	if (L->head->link == (listNode*)NULL) {
 		free(L->head);
 		L->head = (listNode*)NULL;
 		return;
 	}*/
+	//2번 위치에 노드가 없다면 return  (p : 2번위치를 가리킴)
 	else if (p == (listNode*)NULL) return;
 	else {
 		pre = L->head;
-		while (pre->link != p && p->link != (listNode*)NULL) { //리스트에 항목이 없다면 프로그램이 뻗을 수 있음
+		//pre의 link 값이 p가 아니라면, 다음 노드를 가리킴
+		//굳이 p->link != (listNode*)NULL 조건이 필요한가 =>
+		//p를 지우면 다음 위치의 값을 기존 노드에 연결해줘야 해서 필요함.
+		//하지만 해당 조건이 반복문에 들어갈 필요는 없음.
+		while (pre->link != p /*&& p->link != (listNode*)NULL*/) { 
 			pre = pre->link;
 			L->follow++;
 		}
-		if (pre->link == p) {
+		//1, 3번 노드를 연결, 2번 위치에 있는 노드를 삭제
+		if (pre->link == p && p->link != (listNode*)NULL) {
 			pre->link = p->link;
 			free(p);
 		}
