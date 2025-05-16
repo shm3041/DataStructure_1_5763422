@@ -46,5 +46,20 @@ int main() {
 	printList(mylist);
 
 	destroyLinkedList(mylist);
+
+	mylist = createCLinkedList();
+	insertFirstCNode(mylist, 10);
+	insertFirstCNode(mylist, 20);
+	insertFirstCNode(mylist, 30);
+	insertFirstCNode(mylist, 40);
+	insertFirstCNode(mylist, 50);
+
+	printCList(mylist);
+
+	deleteCNode(mylist, mylist->head->link->link);
+	printCList(mylist);
+
+	destroyCLinkedList(mylist);
+
 	return 0;
 }

@@ -12,7 +12,11 @@ linkedList_h* createLinkedList(void) {
 	return lptr;
 }
 
-int destroyLinkedList(linkedList_h* L) {
+linkedList_h* createCLinkedList(void) {
+	createLinkedList();
+}
+
+void destroyLinkedList(linkedList_h* L) {
 	listNode* p;
 
 	while (L->head != (listNode*)NULL) {
@@ -23,7 +27,28 @@ int destroyLinkedList(linkedList_h* L) {
 	free(L);
 }
 
-int printList(linkedList_h* L) {
+void destroyCLinkedList(linkedList_h* L) {
+	listNode *p = L->head;
+	listNode* temp;
+	//헤드의 주소가 나올때까지
+	/*while (p->link != L->head) {
+		temp = p->link;
+		free(p);
+		p = temp;
+	}
+	free(p);
+	free(L);*/
+
+	while (L->head != L->head->link) {
+		p = L->head->link;
+		L->head->link = L->head->link->link;  // L->head = p->link;
+		free(p);
+	}
+	free(L->head);
+	free(L);
+}
+
+void printList(linkedList_h* L) {
 	listNode* lptr = L->head;
 	printf("Linked List(%d): ", L->follow);
 	while (lptr->link != (listNode*)NULL) {
@@ -32,23 +57,61 @@ int printList(linkedList_h* L) {
 	}
 	printf("[%d]", lptr->data);
 	printf("\n");
+}
 
-	return 0; // 0: 오류X  |  1: 오류O
+void printCList(linkedList_h* L) {
+	listNode* lptr = L->head;
+
+	printf("Circlular Linked List(%d): ", L->follow);
+	if (lptr == NULL) {
+		printf("\n");
+		return 1;
+	}
+
+	while (lptr->link != L->head) {
+		printf("[%d]", lptr->data);
+		lptr = lptr->link;
+	}
+	printf("[%d]", lptr->data);
+	printf("\n");
 }
 
 //에러 여부를 리턴하기 위해 리터럴을 int로 지정
 //헤더를 가져와서 Node를 만든 후 노드를 삽입함
-int insertFirstNode(linkedList_h* L, elementType item) {
+void insertFirstNode(linkedList_h* L, elementType item) {
 	listNode* newNode;
 	newNode = (listNode*)malloc(sizeof(listNode));
 	newNode->data = item;
 	newNode->link = L->head; //(1)  |  lptr의 주소  |  lptr의 값은 data, link
 	L->head = newNode; //(2)  |  [head->link = (data, link)] -> [head->link = (data, link)] -> ~~~~
-
-	return 0; // 0: 오류X  |  1: 오류O
 }
 
-int insertMiddleNode(linkedList_h* L, listNode* pre, elementType item) {
+void insertFirstCNode(linkedList_h* L, elementType item) {
+	listNode* newNode;
+	newNode = (listNode*)malloc(sizeof(listNode));
+	newNode->data = item;
+	newNode->link = L->head; //(1) 
+
+	if (L->head != (listNode*)NULL) {
+		listNode* temp = L->head;
+		//temp = tail이다.
+		while (temp->link != L->head) {
+			temp = temp->link;
+			L->follow++;
+		}
+		temp->link = newNode; //tail의 링크: new노드, new노드는 헤드 가리킴
+		//L->head = newNode;
+	}
+	else {
+		//L->head = newNode;
+		newNode->link = newNode;
+	}
+
+	L->head = newNode; //(2) 
+}
+
+
+void insertMiddleNode(linkedList_h* L, listNode* pre, elementType item) {
 	listNode* newNode;
 
 	newNode = (listNode*)malloc(sizeof(listNode));
@@ -67,8 +130,6 @@ int insertMiddleNode(linkedList_h* L, listNode* pre, elementType item) {
 		newNode->link = pre->link; //(1)
 		pre->link = newNode; //(2)
 	}
-
-	return 0;
 }
 
 void insertNthNode(linkedList_h* L, int loc, elementType item) {
@@ -102,7 +163,7 @@ void insertNthNode(linkedList_h* L, int loc, elementType item) {
 	}
 }
 
-int insertLastNode(linkedList_h* L, elementType item) {
+void insertLastNode(linkedList_h* L, elementType item) {
 	listNode *temp, *newNode;
 
 	newNode = (listNode*)malloc(sizeof(listNode));
@@ -121,9 +182,27 @@ int insertLastNode(linkedList_h* L, elementType item) {
 		L->follow++;
 	}
 	temp->link = newNode;
+}
 
+void insertLastCNode(linkedList_h* L, elementType item) {
+	listNode* temp, * newNode;
 
-	return 0;
+	newNode = (listNode*)malloc(sizeof(listNode));
+	newNode->data = item;
+	newNode->link = (listNode*)NULL;
+
+	temp = L->head;
+	//만약 연결리스트에 값이 없다면 리턴
+	if (temp == (listNode*)NULL) {
+		L->head = newNode;
+		return 0;
+	}
+	//만약 연결리스트에 값이 있다면 마지막 지점으로 설정
+	while (temp->link != L->head) {
+		temp = temp->link;
+		L->follow++;
+	}
+	temp->link = newNode;
 }
 
 int compare_item(elementType first, elementType second) {
@@ -143,7 +222,7 @@ void ordered_insertNode(linkedList_h* L, elementType item) {
 			insertFirstNode(L, item);
 		//아니라면 다음 노드와 비교
 		else {
-			pre = L->head;
+			pre = L->head; //->link를 가리켜도 될텐데?
 			while (pre->link != (listNode*)NULL) {
 				if (compare_item(pre->data, item) < 0 &&
 					compare_item(pre->link->data, item) > 0) break;
@@ -185,6 +264,25 @@ void deleteNode(linkedList_h* L, listNode* p) {
 			free(p);
 		}
 		else 
+			fprintf(stderr, "[deleteNode]: not in the list\n");
+	}
+}
+void deleteCNode(linkedList_h* L, listNode* p) {
+	listNode* pre;
+
+	if (L->head == (listNode*)NULL) return;
+	else if (p == (listNode*)NULL) return;
+	else {
+		pre = L->head;
+		while (pre->link != p && p->link != L->head) {
+			pre = pre->link;
+			L->follow++;
+		}
+		if (pre->link == p) {
+			pre->link = p->link;
+			free(p);
+		}
+		else
 			fprintf(stderr, "[deleteNode]: not in the list\n");
 	}
 }

@@ -14,13 +14,25 @@ typedef struct { //연결리스트의 헤더(다음 자료의 위치)
 	int follow;
 } linkedList_h;
 
-extern linkedList_h* createLinkedList(void); //매개변수가 void일 때는 헤더 포인터(리터럴)를 리턴한다.
-extern int destroyLinkedList(linkedList_h* L);
-extern int printList(linkedList_h* L);
-extern int insertFirstNode(linkedList_h* L, elementType item);
-extern int insertMiddleNode(linkedList_h* L, listNode* pre, elementType item);
-extern int insertLastNode(linkedList_h* L, elementType item);
+extern linkedList_h* createLinkedList(void); //매개변수가 void일 때는 linkedList_h*(리터럴)를 리턴한다.
+extern linkedList_h* createCLinkedList(void);
+
+extern void destroyLinkedList(linkedList_h* L);
+extern void destroyCLinkedList(linkedList_h* L);
+
+extern void printList(linkedList_h* L);
+extern void printCList(linkedList_h* L);
+
+extern void insertFirstNode(linkedList_h* L, elementType item);
+extern void insertFirstCNode(linkedList_h* L, elementType item);
+
+extern void insertMiddleNode(linkedList_h* L, listNode* pre, elementType item);
+extern void insertLastNode(linkedList_h* L, elementType item);
+extern void insertLastCNode(linkedList_h* L, elementType item);
+
 extern void insertNthNode(linkedList_h* L, int loc, elementType item); //loc: location
 extern void ordered_insertNode(linkedList_h* L, elementType item);
+
 //deleteNode First, Middle, Last 구현해보기
 extern void deleteNode(linkedList_h* L, listNode* p);
+extern void deleteCNode(linkedList_h* L, listNode* p);
