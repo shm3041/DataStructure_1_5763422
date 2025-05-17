@@ -190,23 +190,56 @@ void deleteCNode(linkedList_h* L) {
 	listNode* Node, * delNode;
 	elementType item;
 
-	//입력
 	printf("    삭제할 값: ");
 	scanf("%d", &item);
 
-	//item - 1까지 이동
+	//리스트 비어 있을 때
+	if (L->head == NULL)
+		return;
+
+	// 2. 삭제할 대상(노드의 link가 삭제 대상)이 있는지 찾기
 	Node = L->head;
-	while (Node->link->data != item) {
+	int found = 0;
+	do {
+		if (Node->link->data == item) {
+			found = 1;
+			break;
+		}
 		Node = Node->link;
 		L->follow++;
+	} while (Node != L->head);
+
+	// 만약 찾지 못했다면
+	if (!found) {
+		printf("리스트에 %d 값이 존재하지 않습니다.\n", item);
+		return;
 	}
-	
-	//값 삭제
+
 	delNode = Node->link;
-	Node->link = Node->link->link;
+
+	// 값 1개
+	if (L->head == L->tail) {
+		L->head = NULL;
+		L->tail = NULL;
+	}
+	//이전 노드가 tail
+	else if (delNode == L->head) {
+		L->head = delNode->link;
+		Node->link = L->head;
+	}
+	// 삭제할 노드가 tail
+	else if (delNode == L->tail) {
+		L->tail = Node;
+		Node->link = L->head;
+	}
+	// 중간 노드
+	else {
+		Node->link = delNode->link;
+	}
+
 	free(delNode);
 
-	//출력
+	// 출력
 	system("cls");
 	printf("    삭제할 값: %d\n", item);
 }
