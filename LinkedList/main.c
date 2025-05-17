@@ -11,22 +11,24 @@ int main() {
 
 	//ctrl + D
 	//First
-	insertFirstNode(mylist, 10);
-	insertFirstNode(mylist, 20);
-	insertFirstNode(mylist, 30);
-	insertFirstNode(mylist, 40);
 	insertFirstNode(mylist, 50);
+	insertFirstNode(mylist, 40);
+	insertFirstNode(mylist, 30);
+	insertFirstNode(mylist, 20);
+	insertFirstNode(mylist, 10);
+	insertFirstNode(mylist, 00);
 
 	//Last
 	insertLastNode(mylist, 60);
 	insertLastNode(mylist, 70);
 	insertLastNode(mylist, 80);
+	insertLastNode(mylist, 90);
 
 	//Middle
- 	insertMiddleNode(mylist, mylist->head->link->link, 90);
+ 	insertMiddleNode(mylist, mylist->head->link->link->link->link, 1000);
 
 	//Nth
-	insertNthNode(mylist, 2, 20);
+	insertNthNode(mylist, 2, 25);
 
 	printList(mylist);
 	destroyLinkedList(mylist);
@@ -38,6 +40,7 @@ int main() {
 	ordered_insertNode(mylist, 11);
 	ordered_insertNode(mylist, 18);
 	ordered_insertNode(mylist, 15);
+	ordered_insertNode(mylist, 13);
 	ordered_insertNode(mylist, 13);
 
 	printList(mylist);

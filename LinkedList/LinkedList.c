@@ -13,7 +13,7 @@ linkedList_h* createLinkedList(void) {
 }
 
 linkedList_h* createCLinkedList(void) {
-	createLinkedList();
+	return createLinkedList();
 }
 
 void destroyLinkedList(linkedList_h* L) {
@@ -28,35 +28,38 @@ void destroyLinkedList(linkedList_h* L) {
 }
 
 void destroyCLinkedList(linkedList_h* L) {
-	listNode *p = L->head;
-	listNode* temp;
-	//헤드의 주소가 나올때까지
-	/*while (p->link != L->head) {
-		temp = p->link;
-		free(p);
-		p = temp;
-	}
-	free(p);
-	free(L);*/
+	//listNode *p = L->head;
+	//listNode* temp;
 
-	while (L->head != L->head->link) {
-		p = L->head->link;
-		L->head->link = L->head->link->link;  // L->head = p->link;
-		free(p);
+	//while (L->head != L->head->link) {
+	//	p = L->head->link;
+	//	L->head->link = L->head->link->link;  // L->head = p->link;
+	//	free(p);
+	//}
+	//free(L->head);
+	//free(L);
+
+	listNode* me = L->head;
+	listNode* next;
+
+	while (me->link != L->head) {
+		next = me->link;
+		free(me);
+		me = next;
 	}
-	free(L->head);
+	free(me);
 	free(L);
 }
 
 void printList(linkedList_h* L) {
 	listNode* lptr = L->head;
+
 	printf("Linked List(%d): ", L->follow);
 	while (lptr->link != (listNode*)NULL) {
 		printf("[%d]", lptr->data);
 		lptr = lptr->link;
 	}
-	printf("[%d]", lptr->data);
-	printf("\n");
+	printf("[%d] \n", lptr->data);
 }
 
 void printCList(linkedList_h* L) {
@@ -65,21 +68,21 @@ void printCList(linkedList_h* L) {
 	printf("Circlular Linked List(%d): ", L->follow);
 	if (lptr == NULL) {
 		printf("\n");
-		return 1;
+		return;
 	}
 
 	while (lptr->link != L->head) {
 		printf("[%d]", lptr->data);
 		lptr = lptr->link;
 	}
-	printf("[%d]", lptr->data);
-	printf("\n");
+	printf("[%d] \n", lptr->data);
 }
 
 //에러 여부를 리턴하기 위해 리터럴을 int로 지정
 //헤더를 가져와서 Node를 만든 후 노드를 삽입함
 void insertFirstNode(linkedList_h* L, elementType item) {
 	listNode* newNode;
+
 	newNode = (listNode*)malloc(sizeof(listNode));
 	newNode->data = item;
 	newNode->link = L->head; //(1)  |  lptr의 주소  |  lptr의 값은 data, link
@@ -224,9 +227,9 @@ void ordered_insertNode(linkedList_h* L, elementType item) {
 		else {
 			pre = L->head; //->link를 가리켜도 될텐데?
 			while (pre->link != (listNode*)NULL) {
-				if (compare_item(pre->data, item) < 0 &&
-					compare_item(pre->link->data, item) > 0) break;
-				//if (compare_item(pre->data, item) == 0) break;
+				if ((compare_item(pre->data, item) < 0 &&
+					 compare_item(pre->link->data, item) > 0) ||
+					 compare_item(pre->data, item) == 0) break;
 				pre = pre->link;
 				L->follow++;
 			}
@@ -251,15 +254,12 @@ void deleteNode(linkedList_h* L, listNode* p) {
 	else {
 		pre = L->head;
 		//pre의 link 값이 p가 아니라면, 다음 노드를 가리킴
-		//굳이 p->link != (listNode*)NULL 조건이 필요한가 =>
-		//p를 지우면 다음 위치의 값을 기존 노드에 연결해줘야 해서 필요함.
-		//하지만 해당 조건이 반복문에 들어갈 필요는 없음.
-		while (pre->link != p /*&& p->link != (listNode*)NULL*/) { 
+		while (pre->link != p && p->link != (listNode*)NULL) { 
 			pre = pre->link;
 			L->follow++;
 		}
 		//1, 3번 노드를 연결, 2번 위치에 있는 노드를 삭제
-		if (pre->link == p && p->link != (listNode*)NULL) {
+		if (pre->link == p) {
 			pre->link = p->link;
 			free(p);
 		}

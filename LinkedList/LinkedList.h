@@ -27,6 +27,7 @@ extern void insertFirstNode(linkedList_h* L, elementType item);
 extern void insertFirstCNode(linkedList_h* L, elementType item);
 
 extern void insertMiddleNode(linkedList_h* L, listNode* pre, elementType item);
+
 extern void insertLastNode(linkedList_h* L, elementType item);
 extern void insertLastCNode(linkedList_h* L, elementType item);
 
