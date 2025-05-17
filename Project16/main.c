@@ -12,7 +12,7 @@ int main() {
 
 	logicMenu(mylist);
 
-	//destroyCLinkedList(mylist);
+	destroyCLinkedList(mylist);
 	return 0;
 }
 

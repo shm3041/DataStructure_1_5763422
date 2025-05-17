@@ -16,16 +16,22 @@ linkedList_h* createCLinkedList(void) {
 }
 
 void destroyCLinkedList(linkedList_h* L) {
-	listNode* me = L->head;
-	listNode* next;
+	if (L->head != NULL) {
+		if (L->head->link == L->head) {
+			free(L->head);
+		}
+		else {
+			listNode* me = L->head->link;
+			listNode* next;
 
-	do {
-		next = me->link;
-		free(me);
-		me = next;
-	} while (me != L->tail);
-
-	free(me);
+			while (me != L->head) {
+				next = me->link;
+				free(me);
+				me = next;
+			}
+			free(L->head);
+		}
+	}
 	free(L);
 }
 
