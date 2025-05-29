@@ -27,34 +27,11 @@ void insertFirstDClinkedList(NodeType* Node, elementType item) {
 
 // insert Last Node
 void insertLastDClinkedList(NodeType* Node, elementType item) {
-	/*NodeType* newNode;
-
-	newNode = (NodeType*)malloc(sizeof(NodeType));
-	newNode->data = item;
-
-	newNode->lLink = Node->lLink;
-	newNode->rLink = Node;
-	Node->lLink->rLink = newNode;
-	Node->lLink = newNode;*/
 	insertFirstDClinkedList(Node->lLink, item);
 }
 
 // insert Nth Node
 void insertNthDClinkedList(NodeType* Node, int index, elementType item) {
-	/* NodeType* newNode;
-	NodeType* temp = Node;
-
-	newNode = (NodeType*)malloc(sizeof(NodeType));
-	newNode->data = item;
-
-	for (int i = 0; i <= index; i++) {
-		temp = temp->rLink;
-	}
-
-	newNode->lLink = temp;
-	newNode->rLink = temp->rLink;
-	temp->rLink->lLink = newNode;
-	temp->rLink = newNode; */
 	NodeType* temp = Node;
 	for (int i = 0; i < index; i++)
 		temp = temp->rLink;
@@ -72,34 +49,27 @@ elementType deleteDCLinkedList(NodeType* Node) {
 	return r;
 }
 
+// delete Last Node
 elementType deleteLastDClinkedList(NodeType* Node) {
 	deleteDCLinkedList(Node->lLink);
 }
 
+// print Node
 void printDClinkedList(NodeType* H) {
 	NodeType* nptr = H->rLink;
 
 	printf("순방향: ");
 	while (nptr != H) {
-		printf("[%d]", nptr->data);
+		printf("(%d, %d)", nptr->data.coef, nptr->data.expo);
 		nptr = nptr->rLink;
 	}
 	printf("\n");
 
-	printf("역방향: ");
 	nptr = H->lLink;
+	printf("역방향: ");
 	while (nptr != H) {
-		printf("[%d]", nptr->data);
+		printf("(%d, %d)", nptr->data.coef, nptr->data.expo);
 		nptr = nptr->lLink;
 	}
 	printf("\n");
-
-	/*if (nptr->rLink == H) return;
-	nptr = nptr->rLink;
-
-	do {
-		printf("[%d]", nptr->data);
-		nptr->rLink;
-	} while (nptr != H);
-	printf("\n");*/
 }

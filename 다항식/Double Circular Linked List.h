@@ -1,6 +1,9 @@
 #pragma once
 
-typedef int elementType;
+typedef struct elementType {
+	int coef;
+	int expo;
+} elementType;
 
 typedef struct Node {
 	struct Node* lLink;
@@ -15,3 +18,4 @@ extern void insertNthDClinkedList(NodeType* Node, int index, elementType item);
 extern elementType deleteDCLinkedList(NodeType* Node);
 extern elementType deleteLastDClinkedList(NodeType* Node);
 extern void printDClinkedList(NodeType* H);
+extern void distroyDClinkedList(NodeType* Node);

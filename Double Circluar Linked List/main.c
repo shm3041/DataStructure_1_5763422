@@ -7,12 +7,16 @@ int main() {
 	NodeType* mylist;
 	mylist = createDClinkedList();
 
-	/*insertFirstDClinkedList(mylist, 1);
-	insertFirstDClinkedList(mylist, 2);
-	insertFirstDClinkedList(mylist, 3);
-	insertFirstDClinkedList(mylist, 4);
-	insertFirstDClinkedList(mylist, 5);
-	printDClinkedList(mylist);*/
+	/* insertFirstDClinkedList(mylist, 0); // 1번 위치에 삽입
+	insertFirstDClinkedList(mylist, 1); // 1번 위치에 삽입
+	insertFirstDClinkedList(mylist->rLink, 2); // 2번 위치에 삽입
+	insertFirstDClinkedList(mylist->lLink, 3); // 마지막 위치에 삽입
+	printDClinkedList(mylist);
+
+	deleteDCLinkedList(mylist->rLink); // 1번 노드 삭제
+	deleteDCLinkedList(mylist->lLink); // 마지막 노드 삭제
+	deleteDCLinkedList(mylist->rLink->rLink); // 2번 노드 삭제
+	printDClinkedList(mylist); */
 
 	insertLastDClinkedList(mylist, 1);
 	insertLastDClinkedList(mylist, 2);
@@ -21,7 +25,11 @@ int main() {
 	insertLastDClinkedList(mylist, 5);
 	printDClinkedList(mylist);
 
-	insertNthDClinkedList(mylist, 2, 333);
+	deleteLastDClinkedList(mylist);
+	deleteLastDClinkedList(mylist);
+	printDClinkedList(mylist);
+
+	insertNthDClinkedList(mylist, 1, 333);
 	printDClinkedList(mylist);
 
 	return 0;
