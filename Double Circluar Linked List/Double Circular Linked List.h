@@ -14,4 +14,5 @@ extern void insertLastDClinkedList(NodeType* Node, elementType item);
 extern void insertNthDClinkedList(NodeType* Node, int index, elementType item);
 extern elementType deleteDCLinkedList(NodeType* Node);
 extern elementType deleteLastDClinkedList(NodeType* Node);
+extern void distroyDClinkedList(NodeType* Node);
 extern void printDClinkedList(NodeType* H);

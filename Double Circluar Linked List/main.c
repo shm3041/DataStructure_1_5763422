@@ -32,5 +32,7 @@ int main() {
 	insertNthDClinkedList(mylist, 1, 333);
 	printDClinkedList(mylist);
 
+	distroyDClinkedList(mylist);
+
 	return 0;
 }

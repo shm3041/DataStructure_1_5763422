@@ -55,5 +55,8 @@ int main() {
 	printf("Polynomial C(x)\n");
 	printDClinkedList(C);
 
+	distroyDClinkedList(A);
+	distroyDClinkedList(B);
+	distroyDClinkedList(C);
 	return 0;
 }

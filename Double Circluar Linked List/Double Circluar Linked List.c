@@ -72,10 +72,21 @@ elementType deleteDCLinkedList(NodeType* Node) {
 	return r;
 }
 
+// delete Last Node
 elementType deleteLastDClinkedList(NodeType* Node) {
 	deleteDCLinkedList(Node->lLink);
 }
 
+// distory List
+void distroyDClinkedList(NodeType* Node) {
+	NodeType* temp = Node->rLink;
+	while (temp != Node) {
+		free(temp->lLink);
+		temp = temp->rLink;
+	}
+}
+
+// print List
 void printDClinkedList(NodeType* H) {
 	NodeType* nptr = H->rLink;
 
