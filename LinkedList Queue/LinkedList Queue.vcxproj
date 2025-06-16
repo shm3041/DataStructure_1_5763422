@@ -18,20 +18,11 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Double Circular Linked List.h" />
-    <ClInclude Include="Queue.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Double Circluar Linked List.c" />
-    <ClCompile Include="main.c" />
-    <ClCompile Include="Queue.c" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{edfc35df-a491-468e-b616-4b68b4b12c9f}</ProjectGuid>
-    <RootNamespace>DCLQueue</RootNamespace>
+    <ProjectGuid>{342eeeb9-e0e8-498f-a7ff-552c457a61d9}</ProjectGuid>
+    <RootNamespace>LinkedListQueue</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -135,6 +126,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="LinkedList Queue.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

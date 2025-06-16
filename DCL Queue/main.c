@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "Double Circular Linked List.h"
+#include "Queue.h"
 
 int main() {
 	NodeType* mylist;
