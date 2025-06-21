@@ -24,6 +24,7 @@
     <ProjectGuid>{aec9974a-80be-4edb-8d94-6ebbd87adf73}</ProjectGuid>
     <RootNamespace>DoubleCircluarLinkedList</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>DCL List</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
